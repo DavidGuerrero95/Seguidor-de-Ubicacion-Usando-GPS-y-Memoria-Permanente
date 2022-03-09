@@ -2,9 +2,9 @@
 # Seguidor de Ubicación Usando GPS y Memoria Permanente
 
 ## 1 Introducción
-```
-En esta pr ́actica de laboratorio, el objetivo principal ser ́a desarrollar un sistema embebido con la capacidad de recopilar y almacenar datos de geoposicionamiento mediante el uso de dispositivos de posicionamiento global GPS y memorias EEPROM. El resto de componentes lo integran un teclado matricial (KeyPad), un display de cristal l ́ıquido (LCD) y el sistema de desarrollo Raspberry Pi Pico. Para el desarrollo del firmware, el grupo de estudiantes podrá emplear la SDK de C/C++ además de librerías propias.
-```
+
+En esta práctica de laboratorio, el objetivo principal ser ́a desarrollar un sistema embebido con la capacidad de recopilar y almacenar datos de geoposicionamiento mediante el uso de dispositivos de posicionamiento global GPS y memorias EEPROM. El resto de componentes lo integran un teclado matricial (KeyPad), un display de cristal l ́ıquido (LCD) y el sistema de desarrollo Raspberry Pi Pico. Para el desarrollo del firmware, el grupo de estudiantes podrá emplear la SDK de C/C++ además de librerías propias.
+
 ## 2 Descripción del Problema
 ```
 Al grupo de estudiantes se le encarga la labor de desarrollar un sistema embebido con la capacidad de recopilar valores de geoposicionamiento mediante dispositivos GPS apropiados y almacenarlos en memoria no vol ́atil para futuras consultas. El sistema debe operar en dos modos:
