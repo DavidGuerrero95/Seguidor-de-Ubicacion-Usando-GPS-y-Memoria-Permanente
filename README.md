@@ -33,6 +33,7 @@ Componentes y características del desarrollo:
 La Fig.1 muestra un esquema posible del sistema a diseñar.
 
 ![Esquema del sistema a diseñar](https://i.ibb.co/dB6Ps5L/Capture.jpg)
+
 Fig.1: Esquema del sistema a diseñar
 
 ## 5 Referencias
