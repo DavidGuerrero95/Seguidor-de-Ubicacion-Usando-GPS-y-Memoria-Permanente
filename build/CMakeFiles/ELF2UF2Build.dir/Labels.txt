@@ -1,0 +1,13 @@
+# Target labels
+ ELF2UF2Build
+# Source files and their labels
+S:/Users/Documentos/11vo_Semestre/SE/Lab3/build/CMakeFiles/ELF2UF2Build
+S:/Users/Documentos/11vo_Semestre/SE/Lab3/build/CMakeFiles/ELF2UF2Build.rule
+S:/Users/Documentos/11vo_Semestre/SE/Lab3/build/CMakeFiles/ELF2UF2Build-complete.rule
+S:/Users/Documentos/11vo_Semestre/SE/Lab3/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-build.rule
+S:/Users/Documentos/11vo_Semestre/SE/Lab3/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure.rule
+S:/Users/Documentos/11vo_Semestre/SE/Lab3/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download.rule
+S:/Users/Documentos/11vo_Semestre/SE/Lab3/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-install.rule
+S:/Users/Documentos/11vo_Semestre/SE/Lab3/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-mkdir.rule
+S:/Users/Documentos/11vo_Semestre/SE/Lab3/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-patch.rule
+S:/Users/Documentos/11vo_Semestre/SE/Lab3/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-update.rule
