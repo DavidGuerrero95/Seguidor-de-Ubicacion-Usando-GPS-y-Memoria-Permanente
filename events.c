@@ -30,7 +30,6 @@ int pos = 0;
 float min = 0.0;
 float sec = 0.0;
 
-// UART
 char lat[LON_LAT_LN];
 char lon[LON_LAT_LN];
 char pCardinal[P_CARDINAL];
@@ -70,18 +69,12 @@ void eventTimer(void){
 		if((--time_debounce == 0) & init_debounce){
             init_debounce=false;
             key = capture_key();
-			//printf("\nTeclado: %c",key);
 			key_pressed = true;
         }
 
 		if(--time_shift ==0){
             deadline_shift=true;
         }
-		/*
-
-		if((--led_debounce == 0) & led_alarm){
-			led_alarm = false;
-		}*/
 	}
 }
 
@@ -104,8 +97,6 @@ void eventRtc(void){
 void eventUart(void){
 	if(EV_UART){
 		EV_UART = 0;
-		//if(contUart > 1) printf("ERROR x<1");
-		//contUart = 0;
 		getLatLon(data_gps);
 	}
 }
@@ -114,7 +105,6 @@ void getLatLon(char chrReceived){
 	switch (currentState) {
         case SwaitString:
             if (chrReceived == '$'){
-				//printf("\nLat Entro ($)\n");
 				cntReadStringFromGPS = 0;
 				cntCommas = 0;
                 currentState = Swaitcmd;
@@ -125,23 +115,18 @@ void getLatLon(char chrReceived){
             readStringFromGPS[cntReadStringFromGPS++] = chrReceived;
             if (cntReadStringFromGPS == NUM_CHARS_IN_NMEA) {
 				readStringFromGPS[MAX_CHRS-1] = '\0';
-				//printf("\nLat Entro (STRCMP), %s \n",readStringFromGPS);
-				
 				if(strcmp(readStringFromGPS,Nmea) == 0)	{
 					currentState = Sskipcommas1;
-					//printf("\nLat Entro (NMEA EQUALITY) \n");
 				}
                 else  currentState = SwaitString;
 			}
             break;
 		case Sskipcommas1:
 			cntLatLon = 0;
-			//printf("\nLat Entro (COMMAS) \n");
 			if(chrReceived == ',') cntCommas++;
 			if(cntCommas == 2) currentState = Svalidity;
 			break;
 		case Svalidity:
-			//printf("\nLat Entro (VALIDITY) \n");
 			if(chrReceived == 'A') VALIDITY = 1;
 			else if(chrReceived == 'V'){
 				VALIDITY = 0;
@@ -149,52 +134,31 @@ void getLatLon(char chrReceived){
 			}else if(chrReceived == ',' && VALIDITY) currentState = SgetLat;
 			break;
         case SgetLat:
-			//printf("\nLat Entro (LAT) \n");
-			if(chrReceived == ',') {
-				/*printf("\nFIRS LAT: ");
-				for(int i=0; i<LON_LAT_LN; i++) {
-					printf("%c", lat[i]);
-				}
-				printf("\n");*/
+			if(chrReceived == ',')
 				currentState = SgetCardinal1;
-			} else if(cntLatLon < LON_LAT_LN){
+			else if(cntLatLon < LON_LAT_LN)
 				lat[cntLatLon++] = chrReceived;
-				//printf("\nDato: %c, Contador: %d, Dato: %c\n",chrReceived, cntLatLon, lat[(cntLatLon-1)]);
-			}
 			break;
 		case SgetCardinal1:
-			//printf("\nLat Entro (C1) \n");
 			cntLatLon = 0;
 			if(chrReceived == ',') currentState = SgetLong;
 			else pCardinal[0] = chrReceived;
 			break;
 		case SgetLong:
-			//printf("\nLat Entro (LON) \n");
-			//printf("\nLon Entro:");
-			if(chrReceived == ',') {
-				/*printf("\nFIRS LON: ");
-				for(int i=0; i<LON_LAT_LN; i++) {
-					printf("%c", lon[i]);
-				}
-				printf("\n");*/
+			if(chrReceived == ',') 
 				currentState = SgetCardinal2;			
-			} else if(cntLatLon < LON_LAT_LN){
+			else if(cntLatLon < LON_LAT_LN)
 				lon[cntLatLon++] = chrReceived;
-				//printf("\nDato: %c, Contador: %d, Dato: %c\n",chrReceived, cntLatLon, lon[(cntLatLon-1)]);
-			}
 			break;
 		case SgetCardinal2:
-			//printf("\nLat Entro (C2) \n");
 			pCardinal[1] = chrReceived;
 			currentState = SLonDouble;
 			break;
 		case SLonDouble:
-			//printf("\nLat Entro (FINAL) \n");
 			finalLat = conversor_decimal(lat);
 			finalLon = conversor_decimal(lon);
 			if(pCardinal[0] == 'S') finalLat *= -1;
 			if(pCardinal[1] == 'W') finalLon *= -1;
-			//printf("\nLAT: %f, LON: %f\n", finalLat,finalLon);
 			if(VALIDITY) DATA_READY = 1;
 			else DATA_READY = 0;
 			currentState = SwaitString;
@@ -217,17 +181,13 @@ float conversor_decimal(char data[]){
 	for(int i=pos-2;i<pos;i++){
 		min = min*10 + (data[i]&0x0F);
 	}
-	//printf("\nDATA: %s",data);
 	for(int i=pos+1;i<LON_LAT_LN;i++){
 		float segundo = (data[i]&0x0F);
 		if(i<=pos+2)
 			sec = sec*10 + segundo;
-		else {
-			//printf("\nDATO: %f, SEC DISMINUIDO: %f, POSICION: %d, i:%d",segundo,segundo/(10*(i-(pos+2))),pos,i);
+		else 
 			sec += segundo/pow(10,i-(pos+2));
-		}
 	}
-	//printf("\nSec: %f",sec);
 	if(sec >= 60){
 		min += 1;
 		sec -= 60;

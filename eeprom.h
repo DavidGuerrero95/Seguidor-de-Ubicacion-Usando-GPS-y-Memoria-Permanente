@@ -26,7 +26,6 @@ typedef union {
 } _mystr;
 
 
-
 // Conversión para enviar la dirección de escritura/lectura en dos bytes (24LC32, 24LC64, 24LC128, 24LC256)
 #define MSB_ADDRESS(X)  ((X >> 8) & 0xFF)
 #define LSB_ADDRESS(X)  ((X) & 0xFF)

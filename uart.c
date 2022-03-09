@@ -19,12 +19,10 @@ void init_uart(void){
     uart_set_irq_enables(UART_ID, true, false);
     irq_set_exclusive_handler(UART_IRQ, interrupt_rx);
     irq_set_enabled(UART_IRQ, true);
-    //printf("\nInicializo\n");
 }
 
 void interrupt_rx(void){
     data_gps = uart_getc(UART_ID);
     contUart++;
-    printf("%c",data_gps);
     EV_UART = 1;
 }

@@ -17,20 +17,11 @@ void keyboard_init(){
     gpio_init_inputs(col);
 }
 char capture_key(){
-    
-    /*estado_col[0]= gpio_get(col[0]);
-    estado_col[1]= gpio_get(col[1]);
-    estado_col[2]= gpio_get(col[2]);
-    estado_col[3]= gpio_get(col[3]);*/
     for (int i=0;i<4;i++){
         estado_col[i]= gpio_get(col[i]);
     }
     gpio_init_outputs(col);
     gpio_init_inputs(fil);
-    /*estado_fil[0]= gpio_get(fil[0]);
-    estado_fil[1]= gpio_get(fil[1]);
-    estado_fil[2]= gpio_get(fil[2]);
-    estado_fil[3]= gpio_get(fil[3]);*/
     for (int i=0;i<4;i++){
         estado_fil[i]= gpio_get(fil[i]);
     }
@@ -42,7 +33,6 @@ char capture_key(){
             fil_key = i;
         }
     }
-    //printf("El valor de la tecla %c.\n", teclas[fil_key][col_key]);
     gpio_init_outputs(fil);
     gpio_init_inputs(col);
     return teclas[fil_key][col_key];

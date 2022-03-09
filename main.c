@@ -42,16 +42,12 @@ int main() {
         eventUart();
         eventTimer();
         
-       // if(!VALIDITY)  states = SmenuWOConnection;
-        
         if(VALIDITY && states == WaitMenu2){
             states = SmenuWConnection;
-            //printf("%d",VALIDITY);
         } 
         
         if(key == 'A' && states == WaitMenu) {
             states = WriteData;
-            //printf("%c",key);
         }
             
         else if(key == 'B' && states == WaitMenu && contMemory ==0){
@@ -61,16 +57,10 @@ int main() {
                 while(!stdio_usb_connected());
             }
             states = ReadData1;
-            //printf("%c",key);
             key = 0;
         }
-            
-        //else if(!stdio_usb_connected())
-         //   states = ErrorUsb;
-
         if(key == 'C') {
             states = SmenuWConnection;
-            //printf("2: %d",VALIDITY);
             key = 0;
         } if(key == 'D'){
             states = SmenuWConnection;
@@ -92,18 +82,13 @@ int main() {
             break;
         case WriteData:
             if(SAVE_DATA){
-                //printf("\nSAVEDATA");
             SAVE_DATA = 0;
             if(DATA_READY){
-                //printf("\nDATAREADY");
                 DATA_READY = 0;
-                //printf("\nEscribio");
-                //write_eeprom(finalLat,finalLon);
                 lcd_clear();
                 WriteManyCharactersPosition(msjMenu4,0x00);
                 WriteManyCharactersPosition(msjMenu5,0x40);
                 write_eeprom(finalLon,finalLat);
-                //printf("\nLATITUD: %f, LONGITUD: %f\n",finalLat,finalLon);
                 }
             }
             break;
@@ -113,10 +98,6 @@ int main() {
                 loadData = false;
                 if(pos_eeprom(addresInitMem) && contMemory < contMem){
                     if(read_eeprom(readBuf, LEN*2)){
-                        /*printf("\nValor --> ");
-                        for(int i=0; i<LEN*2; i++){
-                            printf("Hexa %d: %x",i,readBuf[i]);
-                        }*/
                         contMemory += LEN*2;
                         addresInitMem += LEN*2;
                         binToFloat(readBuf);
@@ -132,10 +113,6 @@ int main() {
                 loadData = false;
                 if(pos_eeprom(addresInitMem) && contMemory < contMem){
                     if(read_eeprom(readBuf, LEN*2)){
-                        /*printf("\nValor --> ");
-                        for(int i=0; i<LEN*2; i++){
-                            printf("Hexa %d: %x",i,readBuf[i]);
-                        }*/
                         contMemory += LEN*2;
                         addresInitMem += LEN*2;
                         binToFloat(readBuf);
@@ -157,7 +134,6 @@ int main() {
                 key = 0;
                 contMemory = 0;
             }
-            
             break;
         case WaitMenu2:
             break;
@@ -179,8 +155,6 @@ int main() {
 
 void binToFloat(uint8_t ch[LEN*2]){
     for (int i=LEN; i>0; i--){           // Preparar los 4 bytes del valor a escribir
-        //printf("\nLONGITUD EN :%d ----> %x",i,ch[i+3]);
-        //printf("\nLATITUD EN :%d ----> %x\n",i,ch[i-1]);
         longitud.bytes[i-1] = ch[i+3];
         latitud.bytes[i-1] = ch[i-1];
     }

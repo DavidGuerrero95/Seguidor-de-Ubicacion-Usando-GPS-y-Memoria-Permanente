@@ -21,8 +21,6 @@ void gpio_init_inputs(uint inputs[]) {
 }
 
 void gpio_init_outputs(uint outputs[]) {
-    //gpio_init(PINLED);
-    //gpio_set_dir(PINLED, GPIO_OUT);
     for(uint i=0;i<4;i++){
         gpio_init(outputs[i]);
         gpio_set_irq_enabled(outputs[i],GPIO_IRQ_EDGE_RISE,false);

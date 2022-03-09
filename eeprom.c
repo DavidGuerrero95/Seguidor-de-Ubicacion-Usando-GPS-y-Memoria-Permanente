@@ -8,7 +8,6 @@
 #include "events.h"
 #include "lcd.h"
 
-//volatile uint8_t contPag = 0;
 volatile uint8_t contBytes = 0;
 volatile uint16_t contAddress = 0;
 volatile uint32_t addrMem;
@@ -35,45 +34,19 @@ void write_eeprom(float x, float y){
     data[1] = LSB_ADDRESS(addrMem);
     sprintf(mylat,"%f",x);
     sprintf(mylon,"%f",y);
-    //printf("\nCHAR LAT/LON: %f%f\n",mylat,mylon);
     WriteManyCharactersPosition(mylat,0x05);
     WriteManyCharactersPosition(mylon,0x45);
     for (int i=0; i<LEN; i++){
-        //printf("\nLATITUD ESCRITURA: %x",lat.bytes[i]);
-        //printf("\nLONGITUD ESCRITURA: %x",lon.bytes[i]);
         data[2+i] = lat.bytes[i];
         data[6+i] = lon.bytes[i];
     }
     
     if(i2c_write_blocking(I2C_PORT, id, data, (LEN*2)+2, false) != PICO_ERROR_GENERIC && addrMem < 8192){
-        /*for (int i=0; i<LEN; i++){
-            printf("\nLATITUD ESCRITURA: %x",lat.bytes[i]);
-            printf("\nLONGITUD ESCRITURA: %x\n",lon.bytes[i]);
-        }
-        printf("\n DIRECCION: %x%x  ---> Valores: x=%f, y=%f\n",data[0],data[1],lat.val,lon.val);*/
         contMem += (LEN*2);
         addrMem += (LEN*2);
-        //printf("\nCONTADOR: %d",contMem);
     } else if(addrMem >= 8192)
         ERROR = 1;
 }
-
-/*
-bool write_eeprom2(uint8_t addr[], uint8_t data[], uint8_t cant, bool flag){
-    /*
-    if(contBytes == 32){
-        contPag++;
-        contBytes = 0;
-    }/
-    contAddress += cant;
-    contBytes += cant ;
-
-    uint8_t c[2+cant];
-    concatenate(addr, data, cant, c);
-    cant+=2;
-    if(i2c_write_blocking(I2C_PORT, id, c, cant, flag) != PICO_ERROR_GENERIC) return true;
-    return false;
-}*/
 
 bool pos_eeprom(uint32_t addr){
     data[0] = MSB_ADDRESS(addr);
