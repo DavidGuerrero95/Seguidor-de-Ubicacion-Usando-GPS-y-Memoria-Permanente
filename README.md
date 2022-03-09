@@ -8,8 +8,10 @@ En esta práctica de laboratorio, el objetivo principal ser ́a desarrollar un s
 ## 2 Descripción del Problema
 
 Al grupo de estudiantes se le encarga la labor de desarrollar un sistema embebido con la capacidad de recopilar valores de geoposicionamiento mediante dispositivos GPS apropiados y almacenarlos en memoria no vol ́atil para futuras consultas. El sistema debe operar en dos modos:
+
 - seguimiento.
 - consulta.
+
 En modo seguimiento, el sistema recopila los datos de coordenadas (latitud, longitud) que provienen desde el GPS empleando el protocolo NMEA (National Marine Electronics Asociation) y los almacena en una memoria EEPROM a través del protocolo I^2 C. En modo consulta, el sistema envía la información almacenada en la memoria no volátil a la terminal de un computador en formato KML (Keyhole Markup Language). El formato KML es empleado por Google Earth para mostrar información geográfica.
 
 La funcionalidad del sistema es la siguiente:
