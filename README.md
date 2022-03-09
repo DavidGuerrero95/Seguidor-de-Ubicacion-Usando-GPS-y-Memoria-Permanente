@@ -16,28 +16,24 @@ En modo seguimiento, el sistema recopila los datos de coordenadas (latitud, long
 
 La funcionalidad del sistema es la siguiente:
 
-```
 a. Al iniciar el sistema, ́este debe mostrar en un LCD un menú que permita seleccionar uno de los modos de operación. Opciones adicionales como borrar los datos de la memoria pueden estar presentes.
 b. En modo seguimiento, el sistema debe mostrar en el LCD el valor actual tomado desde el GPS, junto con la fecha y hora, mientras va registrando dicha información en la memoria no volátil. El grupo de estudiantes define la estrategia para almacenar los datos de geoposicionamiento. Para este modo, se recomienda que el sistema opere con baterías.
 c. En modo consulta, el sistema envía la información almacenada en memoria (datos de geoposicionamiento) a un PC empleando la conexi ́on UART-USB disponible. La información debe estar en formato KML para luego ser usada por Google Earth con el fin de mostrar el camino seguido por el sistema mientras estuvo registrando información.
 d. Para la operación del sistema se puede emplear un KeyPad.
-```
+
 Componentes y características del desarrollo:
 
-```
 a. Microcontrolador RP2040.
 b. Dispositivo de posicionamiento global GPS. En el laboratorio est ́an disponibles varios GNSS (Global Navigation Satellite System) que incluyen GPS, referencia NEO-7 y NEO-M8.
 c. Memoria EEPROM con interfaz I^2 C. Un tipo de memorias EEPROM I^2 C populares son las de referencia 24LCXX.
 d. Teclado matricial 4x4 (KeyPad) para operar los menús del sistema.
 e. Display de cristal líquido para la visualizaci ́on de menús, datos de geoposicionamiento, entre otros.
 f. PC para tomar la información en formato KML desde el sistema embebido y mostrarla en pantalla usando Google Earth.
-```
+
 La Fig.1 muestra un esquema posible del sistema a diseñar.
 
-![alt text](https://i.ibb.co/dB6Ps5L/Capture.jpg)
-```
-Fig. 1: Esquema del sistema a diseñar
-```
+![Esquema del sistema a diseñar](https://i.ibb.co/dB6Ps5L/Capture.jpg)
+Fig.1: Esquema del sistema a diseñar
 
 ## 5 Referencias
 
